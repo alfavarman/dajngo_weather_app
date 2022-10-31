@@ -8,19 +8,19 @@ from weatherApp.constants import URL_LOC, URL_CIT, UNITS_ID
 
 def index(request):
     # TODO interactive map
-    if request.method == 'POST':
-        city = request.POST.get('city')
 
-        # TODO if input is location no debbugger
-        if str(city).isnumeric():
-            # TODO change to dynamic: read from post map 2 floats from input separated by coma
-            lat = 36.175
-            lon = 103.75
-            urls = f'{URL_CIT}{lat}&lon={lon}{UNITS_ID}'
+    if request.method == 'GET':
+        # TODO - get??
+        # TODO validator
 
-        else:
+        city = request.GET.get('city')
+        if city:
             city = str(city).replace(" ", "%20")
             urls = f'{URL_CIT}{city}{UNITS_ID}'
+        else:
+            lon = float(request.GET.get('lon'))
+            lat = float(request.GET.get('lat'))
+            urls = f'{URL_LOC}{lat}&lon={lon}{UNITS_ID}'
 
 
 
@@ -38,7 +38,6 @@ def index(request):
             'lat': city_weather['coord']['lat'],
             'lon': city_weather['coord']['lon'],
             'temperature': city_weather['main']['temp'],
-            # 'rain': city_weather['main']['population'],
             'humidity': city_weather['main']['humidity'],
             'description': city_weather['weather'][0]['description'],
             'icon': city_weather['weather'][0]['icon']
