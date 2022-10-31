@@ -22,8 +22,11 @@ class WeatherAppView(TemplateView):
     def get_context_data(self):
 
         city = self.request.GET.get('city')
-        lon = float(self.request.GET.get('lon'))
+        lon = self.request.GET.get('lon')
         # TODO improve if's statements pythonics maybe validator
+        if not city and not lon:
+            context = {}
+            return context
         if city:
             city = str(city).replace(" ", "%20")
             urls = f'{URL_CIT}{city}{UNITS_ID}'
