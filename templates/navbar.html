@@ -25,12 +25,10 @@
         {% endif %}
       </ul>
       <form class="d-flex" method="GET" role="search">
-          {% csrf_token %}
         <input class="form-control me-2" name="city" type="search" placeholder="City Name" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
       <form class="d-flex" method="GET" role="search">
-          {% csrf_token %}
         <input class="form-control me-2" name="lat" type="search" placeholder="Latitude" aria-label="Search">
         <input class="form-control me-2" name="lon" type="search" placeholder="Longtitude" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
