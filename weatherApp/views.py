@@ -13,6 +13,12 @@ from weatherApp.constants import URL_LOC, URL_CIT, UNITS_ID
 class MarkersMapView(TemplateView):
     template_name = "map.html"
 
+    # def get(self, request, *args, **kwargs):
+    #
+    #     if self.request == "GET":
+    #         pass
+
+
 
 # TODO validator
 # TODO source data from db and if not db -> request API
