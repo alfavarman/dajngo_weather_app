@@ -5,17 +5,9 @@
     <div class="hero-body">
         <div class="container">
             <p></p>
-            <h3 class="title">
+            <h4 class="title">
                 Created with Python, Django, openweathermap API, PostgreSQL
-            </h3>
-        </div>
-    </div>
-</section>
-<section class="section">
-    <div class="container">
-        <div class="columns">
-            <div class="column is-offset-4 is-4">
-            </div>
+            </h4>
         </div>
     </div>
 </section>
@@ -42,6 +34,7 @@
                                     <span class="title">Humidity :: {{humidity}}%     Temperature :: {{temperature}}°C</span>
                                     <br>
                                 </p>
+
                             </div>
                         </div>
                     </article>
@@ -50,4 +43,5 @@
         </div>
     </div>
 </section>
+{% include 'weatherApp/map.html' %}
 {% endblock %}
