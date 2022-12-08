@@ -75,7 +75,7 @@ class WeatherAppView(TemplateView):
             lon = float(self.request.GET.get('lon'))
             lat = float(self.request.GET.get('lat'))
             urls = f'{URL_LOC}{lat}&lon={lon}{UNITS_ID}'
-        if not city and not lon:
+        else:
             context = {}
             return context
 
@@ -95,4 +95,4 @@ class WeatherAppView(TemplateView):
             'icon': city_weather['weather'][0]['icon'],
         }
 
-        return render(self.request, 'index', context)
+        return context
