@@ -21,10 +21,12 @@
                             <figure class="image is-50x50">
                                 <img src="http://openweathermap.org/img/w/{{icon}}.png" alt="Image">
                             </figure>
+                            <br>
                         </div>
                         <div class="media-content">
                             <div class="content">
                                 <p>
+                                    <br>
                                     <span class="title">City :: {{city}}, {{country}}</span>
                                     <br>
                                     <span class="title">Location(lat,lon) :: {{lat}} , {{lon}}</span>
@@ -43,5 +45,12 @@
         </div>
     </div>
 </section>
-{% include 'weatherApp/map.html' %}
+<div id="map">
+    <form enctype="multipart/form-data" method="get" action="">
+            {{ form }}
+        <input type="submit" value="Submit"/>
+    </form>
+</div>
+
+<!--{% include 'weatherApp/map.html' %}-->
 {% endblock %}

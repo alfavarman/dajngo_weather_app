@@ -1,0 +1,20 @@
+1) get post
+2) constants
+3) dbs - kiedy nowa tabele i foregin key
+4) different forms to same table
+5) samemu zrobic validator
+
+api.
+# from rest_framework import routers
+# from .viewsets import WeatherViewSet
+#
+# router = routers.DefaultRouter()
+# router.register(r"weather", WeatherViewSet)
+#
+# urlpatterns = router.urls
+
+viewset
+
+
+###
+jak zrobic w requirements automatycznie wersje oprogramowania

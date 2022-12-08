@@ -4,9 +4,13 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.views.generic import TemplateView
 from weatherApp.constants import URL_LOC, URL_CIT, UNITS_ID
 from django.shortcuts import render, redirect
-from .forms import NewUserForm
+from .forms import NewUserForm, LocationRequestForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
+
+
+# from .models import Weather
+# from .viewsets import WeatherViewSet
 
 
 def register_request(request):
@@ -46,10 +50,14 @@ def logout_request(request):
     return redirect("index")
 
 
-# TODO interactive map
-class MarkersMapView(TemplateView):
-    template_name = "weatherApp/map.html"
+def form_view(request):
+    form = LocationRequestForm
+    return render(request, 'weatherApp/map1.html', {'form': form})
 
+
+# TODO interactive map
+# class MapView(TemplateView):
+# template_name = "weatherApp/map.html"
 
 
 # TODO validator
@@ -58,13 +66,8 @@ class WeatherAppView(TemplateView):
     template_name = "weatherApp/index.html"
 
     def get_context_data(self):
-
         city = self.request.GET.get('city')
         lon = self.request.GET.get('lon')
-        # TODO improve if's statements pythonics maybe validator
-        if not city and not lon:
-            context = {}
-            return context
         if city:
             city = str(city).replace(" ", "%20")
             urls = f'{URL_CIT}{city}{UNITS_ID}'
@@ -72,7 +75,11 @@ class WeatherAppView(TemplateView):
             lon = float(self.request.GET.get('lon'))
             lat = float(self.request.GET.get('lat'))
             urls = f'{URL_LOC}{lat}&lon={lon}{UNITS_ID}'
+        if not city and not lon:
+            context = {}
+            return context
 
+        # todo this is serializer TODO default define of urls before ifs
         source = urllib.request.urlopen(f'{urls}').read()
 
         city_weather = json.loads(source)
@@ -88,4 +95,4 @@ class WeatherAppView(TemplateView):
             'icon': city_weather['weather'][0]['icon'],
         }
 
-        return context
+        return render(self.request, 'index', context)
